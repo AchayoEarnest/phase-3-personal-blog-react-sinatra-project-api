@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2022_09_07_081816) do
     t.text "reply"
     t.integer "post_id"
     t.integer "user_id"
+    t.string "name"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

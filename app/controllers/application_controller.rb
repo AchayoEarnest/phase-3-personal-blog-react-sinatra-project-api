@@ -8,13 +8,29 @@ class ApplicationController < Sinatra::Base
   end
 
 # Get post based on individual id
-  # get '/create_posts/:id' do
-  #   post_finder = Post.find(params[:id])
-  #   post_finder.to_json
-  # end
+  get '/create_posts/:id' do
+    post_finder = Post.all.find(params[:id])
+    post_finder.to_json(include: :comments)
+  end
 
-  post '/create_comments/:id' do
-    comment = Comment.creare(reply: params[:reply])
+  get '/create_comments' do
+    comment_content = Comment.all
+    comment_content.to_json
+  end
+
+  post '/create_comments' do
+    comment = Comment.create(
+      name: params[:name],
+      email: params[:email],
+      reply: params[:reply],
+      post_id: params[:post_id],
+      user_id: params[:user_id]
+    ).to_json
+  end
+
+  delete '/create_comments/:id' do
+    comment = Comment.all.find(params[:id])
+    comment.destroy
     comment.to_json
   end
 
