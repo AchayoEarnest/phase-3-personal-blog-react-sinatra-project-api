@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
     comment_content.to_json
   end
 
+  # post comments under comments section
   post '/create_comments' do
     comment = Comment.create(
       name: params[:name],
@@ -28,6 +29,7 @@ class ApplicationController < Sinatra::Base
     ).to_json
   end
 
+# responsible for destroying data from the database
   delete '/create_comments/:id' do
     comment = Comment.all.find(params[:id])
     comment.destroy
